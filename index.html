@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<!-- 宣告使用 HTML5；DOCTYPE 是文件類型宣告，不需要結束標籤。 -->
+<html lang="zh-Hant">
+<!-- html 包住整份文件；lang="zh-Hant" 表示主要使用繁體中文。 -->
+<head>
+    <!-- head 放網頁資訊；這些資訊不會直接成為頁面中的報導文字。 -->
+    <meta charset="UTF-8">
+    <!-- UTF-8 可正確處理中文；meta 是空元素，不寫結束標籤。 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport 讓行動裝置使用裝置寬度；不代表固定寬度的圖片會自動縮小。 -->
+    <meta name="description" content="走進台中第二市場，認識百年歷史、六角樓與在地美食，透過景點清單、有框表格、照片、影片與 Google 地圖閱讀城市故事。">
+    <!-- description 提供網頁摘要；author 標示作者。 -->
+    <meta name="author" content="蔡芷妍">
+    <!-- robots 表達索引意圖；本機檔案不會因此自動被搜尋引擎收錄。 -->
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph 提供分享摘要，不是搜尋排名保證。 -->
+    <meta property="og:type" content="article">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:title" content="台中第二市場報導｜百年歲月裡的市井風味">
+    <meta property="og:description" content="認識台中第二市場的百年歷史、六角樓與傳統美食，搭配景點表格、照片、影片及位置地圖。">
+    <meta property="og:image" content="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmi3Rlhr3FnGIt2ujcwNuO09jRP1IeDUsYB4tDs8Mv47NLX2No78xOeqw&s=10">
+    <meta property="og:image:alt" content="台中第二市場六角樓">
+    <meta property="article:published_time" content="2026-10-14">
+    <meta property="article:modified_time" content="2026-10-21">
+    <!-- 正式上線後，再以真實公開網址加入 canonical 及 og:url；不要使用本機或虛構網址。 -->
+    <title>台中第二市場報導｜HW06 CSS 樣式練習</title>
+    <!-- title 顯示在瀏覽器分頁；與 body 中的 h1 用途不同。 -->
+    <!--
+        方法二：style 元素放在 head，集中設定整頁共用樣式。
+        CSS 規則的結構是「選擇器 { 屬性: 值; }」，CSS 註解使用 /* ... */。
+        元素選擇器如 body、h2；類別選擇器如 .video-frame；ID 選擇器如 #tips。
+        方法一的行內樣式，請在本文搜尋「方法一」查看三處示範。
+    -->
+    <style>
+        /* 1. 盒子尺寸與全頁文字：border-box 讓寬度包含內距與框線。 */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            max-width: 980px;
+            margin: 0 auto;
+            padding: 32px 24px;
+            font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+            font-size: 17px;
+            line-height: 1.85;
+            color: #263d35;
+            background-color: #f2f4ed;
+        }
+
+        /* 2. 頁首：背景、框線、圓角與內距共同建立報導的視覺層次。 */
+        header {
+            padding: 34px 36px;
+            background-color: #173f35;
+            color: #fffdf5;
+            border-top: 6px solid #c89d56;
+            border-radius: 6px;
+        }
+
+        h1 {
+            margin: 0 0 16px;
+            font-size: 2rem;
+            line-height: 1.4;
+            letter-spacing: 0.04em;
+        }
+
+        header p {
+            margin: 10px 0;
+        }
+
+        small {
+            font-size: 0.85em;
+            font-style: normal;
+        }
+
+        /* 3. 導覽與連結：inline-block 讓連結可設定完整的點選內距。 */
+        nav {
+            margin: 24px 0;
+            padding: 20px 24px;
+            background-color: #e6ecdf;
+            border: 1px solid #cbd5c4;
+            border-radius: 6px;
+        }
+
+        nav h2 {
+            margin-top: 0;
+            padding: 0;
+            border: 0;
+            font-size: 1.1rem;
+        }
+
+        nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        nav li {
+            display: inline-block;
+            margin: 4px 6px 4px 0;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 6px 12px;
+            background-color: #fffdf8;
+            border: 1px solid #cbd5c4;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        a {
+            color: #245c49;
+            text-underline-offset: 4px;
+            overflow-wrap: anywhere;
+        }
+
+        /* 虛擬類別 :hover 表示滑鼠移入；:focus-visible 提供鍵盤焦點提示。 */
+        a:hover {
+            color: #784d1b;
+            text-decoration: underline;
+        }
+
+        a:focus-visible, summary:focus-visible {
+            outline: 3px solid #b37d38;
+            outline-offset: 4px;
+        }
+
+        /* 4. 文章章節與盒子模型：margin 為外距，padding 為內距。 */
+        section, aside {
+            margin: 24px 0;
+            padding: 24px 28px;
+            background-color: #fffdf8;
+            border: 1px solid #d9dfd2;
+            border-radius: 6px;
+        }
+
+        h2 {
+            margin: 0 0 18px;
+            padding-left: 12px;
+            border-left: 4px solid #54765d;
+            font-size: 1.4rem;
+            line-height: 1.5;
+        }
+
+        h3 {
+            margin: 22px 0 10px;
+            font-size: 1.1rem;
+        }
+
+        p {
+            margin: 12px 0;
+        }
+
+        ul, ol {
+            padding-left: 1.6em;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        hr {
+            margin: 26px 0;
+            border: 0;
+            border-top: 1px solid #ccd5c6;
+        }
+
+        /* 5. 表格：以 CSS 框線取代 HW05 的 border="1"。 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.95em;
+            overflow-wrap: anywhere;
+        }
+
+        caption {
+            margin-bottom: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        th, td {
+            padding: 12px;
+            border: 1px solid #becdbb;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        thead {
+            background-color: #e1e9db;
+        }
+
+        tbody th {
+            background-color: #f0f3e9;
+        }
+
+        /* 6. 圖片與嵌入媒體：類別區分影片比例與地圖高度。 */
+        figure {
+            margin: 18px 0;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        figcaption {
+            margin-top: 10px;
+            color: #536359;
+            font-size: 0.85em;
+        }
+
+        iframe {
+            display: block;
+            max-width: 100%;
+            border: 0;
+            border-radius: 4px;
+        }
+
+        .video-frame {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 16 / 9;
+        }
+
+        .map-frame {
+            width: 100%;
+            height: 340px;
+        }
+
+        /* 7. ID 選擇器只設定這個補充區；aside 仍保留原有語意。 */
+        #tips {
+            background-color: #edf0dd;
+            border-left: 5px solid #8b9459;
+        }
+
+        summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 32px;
+            padding: 20px 0;
+            border-top: 2px solid #54765d;
+            color: #536359;
+            text-align: center;
+        }
+
+        /* 8. 窄視窗只縮小留白與字級，所有 CSS 仍在同一個 style 元素。 */
+        @media (max-width: 600px) {
+            body {
+                padding: 16px 12px;
+                font-size: 16px;
+            }
+
+            header, nav, section, aside {
+                padding: 20px 16px;
+            }
+
+            h1 {
+                font-size: 1.65rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!--
+        第六次作業：一頁式台中第二市場報導。
+        本範例延續 HW05 的 HTML 語意結構，加入 CSS 配色、文字與盒子模型。
+        方法一：在個別元素的 style 屬性內寫行內樣式；本頁共有三處示範。
+        方法二：在 head 的 style 元素內集中撰寫共用規則。
+        所有自寫 CSS 都在本 HTML；不載入外部 CSS，不使用 @import 或自寫 JavaScript。
+        YouTube 與 Google 地圖是外部服務，服務內部可能使用自己的 CSS 與 JavaScript。
+        語意元素描述內容用途；本次的視覺外觀由 CSS 決定。
+        註解使用「小於符號、驚嘆號、兩個連字號」開始，並以兩個連字號及大於符號結束。
+        註解不會顯示於網頁，但讀者可從原始碼看見，因此不要放私人資料。
+        使用一致的四個空格縮排；成對標籤都明確寫出結束標籤。
+    -->
+
+    <!-- header 是頁首；id="top" 是下方「回到頁首」連結的目的地。 -->
+    <header id="top">
+        <!-- h1 是本頁主標題；h2 用於各章節，依內容階層選用標題。 -->
+        <h1>台中第二市場：百年歲月裡的市井風味</h1>
+        <p><small>城市走讀 · 歷史建築 · 傳統美食</small></p>
+        <p><strong>從六角樓到傳統美食，一起品嚐台中的生活記憶。</strong></p>
+        <!-- 方法一（1/3）：行內 style 只設定這個 mark 的背景、文字顏色與內距。 -->
+        <p>本期焦點：<mark style="background-color: #f6df9d; color: #3e351c; padding: 2px 6px;">百年歷史與六角樓建築</mark>，從美食報導延伸到位置地圖。</p>
+        <!-- time 的 datetime 以標準日期格式提供機器可讀的日期。 -->
+        <p>作者：蔡芷妍｜報導整理日期：<time datetime="2026-10-21">2026 年 10 月 21 日</time></p>
+        <!-- 方法一（3/3）：共用的 small 為正常字體，這一處另用行內樣式改為斜體。 -->
+        <p><small style="font-style: italic;">本文為資料整理型教學報導，非現場採訪紀錄。</small></p>
+    </header>
+
+    <!-- nav 表示導覽區；href="#名稱" 會跳到本頁相同 id 的元素。 -->
+    <nav aria-label="報導目錄">
+        <h2>報導目錄</h2>
+        <ul>
+            <li><a href="#intro">市場簡介</a></li>
+            <li><a href="#highlights">市場特色與逛街順序</a></li>
+            <li><a href="#table">景點比較表</a></li>
+            <li><a href="#photo">六角樓照片</a></li>
+            <li><a href="#video">影音報導</a></li>
+            <li><a href="#map">位置地圖</a></li>
+            <li><a href="#tips">走讀小提醒</a></li>
+            <li><a href="#sources">資料來源</a></li>
+        </ul>
+    </nav>
+
+    <!-- hr 表示內容主題的分隔，也是沒有結束標籤的空元素。 -->
+    <hr>
+
+    <!-- main 包住本頁主要內容；article 表示可獨立閱讀的完整報導。 -->
+    <!-- main 是本頁唯一的主要內容區，不能放入 nav、aside、header 或 footer 裡。 -->
+    <main id="main-content">
+        <!-- article 收納可獨立理解的報導；section 是這篇報導的主題章節。 -->
+        <article aria-label="台中第二市場專題報導">
+            <!-- section 將報導分成有標題的章節；同一頁中的 id 不可重複。 -->
+            <section id="intro">
+                <h2>一、市場簡介</h2>
+                <!-- p 表示段落；strong 強調重要資訊，不用來取代標題。 -->
+                <p>
+                    台中第二市場位於台中市中區，自 <strong>1917 年</strong>開設以來，
+                    成為市民體驗在地美食與庶民文化的重要地點。場內結合傳統建築結構、老字號攤位與道地小吃，
+                    讓人能在繁華的城區中感受濃厚的歷史煙火氣。
+                </p>
+                <p>
+                    場內最具代表性的建築核心是中央的<strong>六角樓</strong>。
+                    這座六角形結構的建築於日治時期興建，以其為中心向外輻射出六條通道，
+                    不僅是當時極具特色的市場設計，後來也成為市場內的標誌性地標。
+                </p>
+                <p>
+                    從六角樓的建築空間到各式傳承數十年的古早味美食，第二市場就像一本用味覺與視覺堆疊的城市故事書。
+                    本篇以特色整理與建議逛街順序，介紹這座百年市場。
+                </p>
+                <!-- br 僅用於同段文字中需要的換行；不要用很多 br 製造間距。 -->
+                <p>市場地址：台中市中區三民路二段 87 號。<br>閱讀重點：歷史建築、傳統美食與市井文化。</p>
+            </section>
+
+            <hr>
+
+            <section id="highlights">
+                <h2>二、市場特色與逛街順序</h2>
+                <h3>值得留意的三個特色</h3>
+                <!-- ul 是無序清單；li 是個別項目，適合不分先後的資訊。 -->
+                <ul>
+                    <li><strong>歷史建築：</strong>六角樓展現了早期的市場空間規劃與歷史風貌。</li>
+                    <li><strong>傳統美食：</strong>集結了滷肉飯、紅茶、肉員等傳承多年的在地小吃。</li>
+                    <li><strong>庶民氛圍：</strong>錯綜的通道與熱鬧的攤位傳遞出濃厚的庶民生活氣息。</li>
+                </ul>
+
+                <h3>建議逛街順序</h3>
+                <!-- 方法一（2/3）：這一段有獨立的左框線；其他 p 不受這個 style 屬性影響。 -->
+                <p style="border-left: 4px solid #b37d38; padding-left: 14px;">以下是本報導規劃的逛街建議，並非官方指定路線。</p>
+                <!-- ol 是有序清單；瀏覽器會依 li 的排列產生編號。 -->
+                <ol>
+                    <li>進入市場後，先走至中央的六角樓，觀察特殊的六角形建築結構與放射狀通道。</li>
+                    <li>順著主要通道走訪傳統攤位，品嚐道地的在地小吃。</li>
+                    <li>漫步於市場內部的穿廊與巷弄，閱讀歷史沿革並感受老市場的氛圍。</li>
+                    <li>沿場內步道散步，最後在周邊歇腳空間整理今日的走訪觀察。</li>
+                </ol>
+            </section>
+
+            <hr>
+
+            <section id="table">
+                <h2>三、景點比較表</h2>
+                <!--
+                    table 用於呈現資料，不用來排版整個網頁。
+                    HW06 移除舊式 border 屬性，改由 style 元素內的 table、th、td 規則設定框線。
+                    border-collapse 合併相鄰框線；padding 增加儲存格內距。
+                    表格仍保留 caption、thead、tbody、scope 等語意結構。
+                -->
+                <table>
+                    <!-- caption 是表格標題，放在 table 內最前面。 -->
+                    <caption>台中第二市場三處亮點的特色與觀察重點</caption>
+                    <!-- thead 包住表頭；tr 是一橫列；th 是標題儲存格。 -->
+                    <thead>
+                        <tr>
+                            <!-- scope="col" 表示這個 th 是整欄的標題。 -->
+                            <th scope="col">景點名稱</th>
+                            <th scope="col">主要特色</th>
+                            <th scope="col">建議觀察重點</th>
+                        </tr>
+                    </thead>
+                    <!-- tbody 包住資料列；td 是一般資料儲存格。 -->
+                    <tbody>
+                        <tr>
+                            <!-- scope="row" 表示這個 th 是本列的標題。 -->
+                            <th scope="row">六角樓</th>
+                            <td>建於日治時期的市場核心建築</td>
+                            <td>六角形建築結構及與通道輻射的歷史關係</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">美食通道</th>
+                            <td>聚集眾多數十年老店的小吃區域</td>
+                            <td>在地古早味小吃與繁忙的市場日常</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">周邊傳統攤商</th>
+                            <td>販售肉品、蔬果與日常用品的區域</td>
+                            <td>傳統市場的買賣互動及現場歷史解說</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <hr>
+
+            <section id="photo">
+                <h2>四、六角樓照片</h2>
+                <!-- figure 將圖片與圖說組成一個單位；figcaption 是圖說。 -->
+                <figure>
+                    <!--
+                        img 是空元素，不寫 /img 結束標籤。
+                        src 指定圖片網址；本範例使用外部圖片，需要連線才能載入。
+                        alt 描述照片內容，圖片未載入時或使用螢幕閱讀器時仍可理解。
+                        width 提供圖片尺寸資訊；CSS 的 max-width: 100% 與 height: auto 讓圖片在窄視窗縮小且保持比例。
+                    -->
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmi3Rlhr3FnGIt2ujcwNuO09jRP1IeDUsYB4tDs8Mv47NLX2No78xOeqw&s=10"
+                        alt="台中第二市場六角樓外觀"
+                        width="480">
+                    <figcaption>
+                        六角樓是台中第二市場的重要地標。
+                        圖片來源：<a href="https://dra.org.tw/index.html">中城再生文化協會</a>。
+                    </figcaption>
+                </figure>
+            </section>
+
+            <hr>
+
+            <section id="video">
+                <h2>五、影音報導</h2>
+                <p>透過下方影片認識台中第二市場與六角樓，再比較影片畫面與本文介紹的亮點。</p>
+                <!--
+                    iframe 嵌入台中第二市場介紹影片。
+                    src 使用 /embed/影片ID，title 描述內容；allowfullscreen 允許全螢幕。
+                    strict-origin-when-cross-origin 讓 HTTP 預覽傳送來源資訊。
+                    請用「HW06_開啟預覽.command」或 Live Server 開啟；file:// 缺少來源時仍可能出現錯誤 153。
+                    更換影片不會解除 YouTube 的來源要求，因此須搭配正確預覽方式。
+                -->
+                <figure>
+                    <iframe
+                        class="video-frame"
+                        width="560"
+                        height="315"
+                        src="https://youtu.be/YHLyQrcTozI?si=2ppNwxPwmOOyyety"
+                        title="台中第二市場美食與歷史建築介紹影片"
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allowfullscreen>
+                    </iframe>
+                    <figcaption>影片：台中第二市場美食與歷史建築介紹｜發布者：旅行節目頻道。</figcaption>
+                </figure>
+                <p><a href="https://youtu.be/YHLyQrcTozI?si=2ppNwxPwmOOyyety" target="_blank" rel="noopener noreferrer">在 YouTube 觀看台中第二市場介紹（另開分頁）</a></p>
+                <p><small>影片為外部作者發布的景點介紹，現場狀況請以最新官方資訊為準。</small></p>
+                <p><small>本機預覽請使用同資料夾的 <code>HW06_開啟預覽.command</code> 或 Live Server；若直接開啟 HTML 出現錯誤 153，請改用 HTTP 預覽或上方 YouTube 連結。</small></p>
+            </section>
+
+            <!-- 位置地圖是報導的主要資訊，因此用 section；iframe 嵌入外部地圖。 -->
+            <section id="map">
+                <h2>六、位置地圖：找到台中第二市場</h2>
+                <p>台中第二市場位於台中市中區，地址為<strong>三民路二段 87 號</strong>。
+                    下方地圖標示本文介紹的市場位置，方便讀者對照景點與周邊街道。</p>
+                <!--
+                    Google 地圖以座標定位，q 指定緯度 24.142079、經度 120.678858，output=embed 回傳嵌入版。
+                    網址的 & 在 HTML 中寫成 &amp;。不需在本教學檔放入 API 金鑰。
+                    title 說明地圖用途；loading="lazy" 延後載入較下方的外部內容。
+                    iframe 必須寫結束標籤；width 與 height 設定顯示尺寸。
+                    地圖需連網；另提供一般地圖連結，載入失敗時仍可開啟。
+                -->
+                <iframe
+                    class="map-frame"
+                    src="https://maps.google.com/maps?q=24.142079,120.678858&amp;z=16&amp;output=embed"
+                    width="480"
+                    height="360"
+                    title="台中第二市場位置 Google 地圖"
+                    loading="lazy"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen>
+                </iframe>
+                <p><a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%8F%B0%E4%B8%AD%E7%AC%AC%E4%BA%8C%E5%B8%82%E5%A0%B4%2C%E5%8F%B0%E4%B8%AD%E5%B8%82" target="_blank" rel="noopener noreferrer">在 Google 地圖開啟台中第二市場（另開分頁）</a></p>
+                <p><small>位置查詢由 Google 地圖提供；抵達後請依現場導覽牌確認入口與通道。</small></p>
+            </section>
+
+            <hr>
+
+            <!--
+                aside 放與報導相關、但可獨立省略的補充資訊。
+                此處是走讀提醒，不用來取代主要景點介紹。
+                本次用背景、內距與左框線區分補充區塊，仍依文件順序顯示。
+            -->
+            <aside id="tips" aria-labelledby="tips-title">
+                <h2 id="tips-title">走讀小提醒</h2>
+                <!-- details 與 summary 提供瀏覽器原生收折功能，不需要自寫 JavaScript。 -->
+                <details open>
+                    <summary>出發前與走讀時，記得這三件事</summary>
+                    <ul>
+                        <li>攜帶飲用水，依天氣準備防曬或雨具。</li>
+                        <li>在市場通道留意人潮與安全，尊重店家並保持環境整潔。</li>
+                        <li>以文字或照片記錄觀察；若寫入報導，區分現場觀察與引用資料。</li>
+                    </ul>
+                </details>
+            </aside>
+
+            <hr>
+
+            <section id="sources">
+                <h2>七、資料來源</h2>
+                <p>本報導依下列資料整理，散步順序與觀察建議由示範作者規劃。</p>
+                <!--
+                    target="_blank" 另開分頁；rel 保護開啟新頁面的關聯。
+                    網址中的 & 在 HTML 原始碼中寫成 &amp;。
+                -->
+                <ul>
+                    <li><a href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQmi3Rlhr3FnGIt2ujcwNuO09jRP1IeDUsYB4tDs8Mv47NLX2No78xOeqw&s=10" target="_blank" rel="noopener noreferrer">台中第二市場</a></li>
+                    <li><a href="https://dra.org.tw/index.html"_blank" rel=" target="noopener noreferrer">中城再生文化協會</a></li>
+                    <li><a href="https://youtu.be/YHLyQrcTozI?si=2ppNwxPwmOOyyety" target="_blank" rel="noopener noreferrer">YouTube：台中第二市場美食與歷史介紹影片</a></li>
+                </ul>
+                <p><small>資料整理日期：2026 年 10 月 21 日。</small></p>
+            </section>
+        </article>
+    </main>
+
+    <hr>
+
+    <!-- footer 是頁尾；來源與作者標示應依自己的作品修改。 -->
+    <footer>
+        <p><strong>第六次 HTML 與 CSS 作業範例｜台中第二市場報導</strong></p>
+        <p><small>作者：蔡芷妍 · 更新日期：2026 年 10 月 21 日</small></p>
+        <p><small>CSS 教學參考：<a href="https://steam.oxxostudio.tw/category/css/info/how-to-use.html">STEAM：開始使用 CSS（方法一、方法二）</a>。</small></p>
+        <p><small>文字依來源整理；照片與影片權利屬原作者。本文為課堂示範。</small></p>
+        <p><a href="#top">回到頁首</a></p>
+    </footer>
+</body>
+</html>
